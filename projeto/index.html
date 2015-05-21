@@ -1,28 +1,58 @@
-<HTML>
-<HEAD>
-<TITLE>P-MAN</TITLE>
-<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML5 Pacman</title>
+    
+    <style type="text/css">
+      @font-face {
+	    font-family: 'BDCartoonShoutRegular';
+        src: url('BD_Cartoon_Shout-webfont.ttf') format('truetype');
+	    font-weight: normal;
+	    font-style: normal;
+      }
+      #pacman {
+        height:450px;
+        width:342px;
+        margin:20px auto;
+      }
+      #shim { 
+        font-family: BDCartoonShoutRegular; 
+        position:absolute;
+        visibility:hidden
+      }
+      h1 { font-family: BDCartoonShoutRegular; text-align:center; }
+      body { width:342px; margin:0px auto; font-family:sans-serif; }
+      a { text-decoration:none; }
+    </style>
 
- .......SECRET COMMAND.......
+</head>
 
-This game is very hard to clear, so I give you SECRET COMMAND.
+<body>
+  
+  <div id="shim">shim for font face</div>
 
-"EASY"       EASY MODE    (ENEMY 3/4 SPEED)
-"EASIEST"    EASIEST MODE (ENEMY 1/2 SPEED)
+  <h1>HTML5 Pacman</h1>
 
-Before you start, type "EASY" or "EASIEST" in SCORE WINDOW.
-Perhaps you can clear it easily.
+  <a href="http://arandomurl.com/">Writeup</a> |
+  Code on <a href="http://arandomurl.com/">Github</a>
 
+  <div id="pacman"></div>
+  <script src="pacman.js"></script>
+  <script src="modernizr-1.5.min.js"></script>
 
-//-->
-</HEAD>
-<FRAMESET COLS="336,*">
-  <FRAME SRC="pman.html" NAME="Pman" NORESIZE SCROLLING="NO">
-  <FRAME SRC="pcontrol.html" NAME="Pcontrol" NORESIZE SCROLLING="NO">
-</FRAMESET>
-<NOFRAME>
-You must get Netscape 3.0 or later.
+  <script>
 
+    var el = document.getElementById("pacman");
 
-</NOFRAME>
-</HTML>
+    if (Modernizr.canvas && Modernizr.localstorage && 
+        Modernizr.audio && (Modernizr.audio.ogg || Modernizr.audio.mp3)) {
+      window.setTimeout(function () { PACMAN.init(el, "./"); }, 0);
+    } else { 
+      el.innerHTML = "Sorry, needs a decent browser<br /><small>" + 
+        "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
+    }
+  </script>
+
+</body>
+</html>
